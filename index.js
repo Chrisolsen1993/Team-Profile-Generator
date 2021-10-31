@@ -77,24 +77,45 @@ inquirer.prompt(managerQuestion).then((answer)=> {
     newManager =new Manager(answer.name, answer.id, answer.email, answer.officeNumber);
     employeeArray.push(newManager);
     console.log(employeeArray)
-    makeDecision()
+    generateManagerHtml(newManager)
+    decideNext()
 })
-function makeDecision(){
+function decideNext(){
 inquirer.prompt(decisionQuestion).then((response)=>{
-console.log(response.employee_type)
-if (response.employee_type==="Engineer"){
-engineerPrompt()
-}
-else if(response.employee_type==="Intern"){
-    internPrompt()
-}
-else{
-    generateManagerHtml()
-    finishHtml()
+    switch(response.choice){
+  case "Engineer":
+      engineerPrompt()
+      generateEngineerHtml(newEngineer)
+      
+     break;
+    
+  case "Intern":
+      internPrompt()
+      generateInternHtml(newIntern)
+      
+      break;
+  default:
+      finishHtml()
 }
 })
 
-     }
+}
+// function makeDecision(){
+// inquirer.prompt(decisionQuestion).then((response)=>{
+// console.log(response.employee_type)
+// if (response.employee_type==="Engineer"){
+// engineerPrompt()
+// }
+// else if(response.employee_type==="Intern"){
+//     internPrompt()
+// }
+// else{
+//     generateManagerHtml()
+//     finishHtml()
+// }
+// })
+
+//      }
 function engineerPrompt(){
     inquirer.prompt(engineerQuestions).then((answer)=> {
         console.log (answer)
@@ -102,7 +123,7 @@ function engineerPrompt(){
         newEngineer =new Engineer(answer.name, answer.id, answer.email, answer.github);
         employeeArray.push(newEngineer);
         console.log(employeeArray)
-        makeDecision()
+        decideNext()
     })
    }
 
@@ -113,7 +134,7 @@ function engineerPrompt(){
         newIntern =new Intern(answer.name, answer.id, answer.email, answer.school);
         employeeArray.push(newIntern);
         console.log(employeeArray)
-        makeDecision()
+       decideNext()
     })
    }
 }
@@ -152,12 +173,12 @@ function startHtml(){
         }
     });
                 }
-   function generateManagerHtml(manager) {
-       const name = manager.getName();
-       const role = manager.getRole();
-       const id = manager.getId();
-       const email = manager.getEmail();
-       const officeNumber = manager.getOfficeNumber();
+   function generateManagerHtml(menber) {
+       const name = menber.getName();
+       const role = menber.getRole();
+       const id = menber.getId();
+       const email = menber.getEmail();
+       const officeNumber = menber.getOfficeNumber();
        const managerHtml = `<div class="card employee-card">
        <div class="card-header">
            <h2 class="card-title">${ name }</h2>
@@ -179,6 +200,71 @@ function startHtml(){
         console.log("success")
     };
    })}
+function generateEngineerHtml(menber) {
+    const name = menber.getName();
+       const role = menber.getRole();
+       const id = menber.getId();
+       const email = menber.getEmail();
+       const github = menber.getGithub();
+       const engineerHtml = ` 
+       <div class="card employee-card">
+    <div class="card-header">
+        <h2 class="card-title">${ name }</h2>
+        <h3 class="card-title"><i class="fas fa-glasses mr-2"></i>${ role }</h3>
+    </div>
+    <div class="card-body">
+        <ul class="list-group">
+            <li class="list-group-item">ID: ${ id }</li>
+            <li class="list-group-item">Email: <a href="mailto:${ email }">${ email }</a></li>
+            <li class="list-group-item">GitHub: <a href="https://github.com/${ github }" target="_blank" rel="">${ github }</a></li>
+        </ul>
+    </div>
+</div>
+       `
+       fs.appendFile("./dist/team.html", engineerHtml, function (err) {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            console.log("success")
+        };
+       })
+
+
+}
+function generateInternHtml(menber){
+    const name = menber.getName();
+    const role = menber.getRole();
+    const id = menber.getId();
+    const email = menber.getEmail();
+    const school = menber.getSchool();
+
+  const internHtml = `
+  <div class="card employee-card">
+    <div class="card-header">
+        <h2 class="card-title">${ name }</h2>
+        <h3 class="card-title"><i class="fas fa-user-graduate mr-2"></i>${ role }</h3>
+    </div>
+    <div class="card-body">
+        <ul class="list-group">
+            <li class="list-group-item">ID: ${ id }</li>
+            <li class="list-group-item">Email: <a href="mailto:${ email }">{{ email }}</a></li>
+            <li class="list-group-item">School: ${ school }</li>
+        </ul>
+    </div>
+</div>
+  `
+  fs.appendFile("./dist/team.html", internHtml, function (err) {
+    if (err) {
+        console.log(err);
+    }
+    else {
+        console.log("success")
+    };
+   })
+
+}
+
 
 
    function finishHtml(){
