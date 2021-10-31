@@ -5,8 +5,9 @@ const inquirer = require("inquirer");
 const fs = require("fs");
 function init(){
 console.log("let's build your Team profile by starting with your team manager")
+  startHtml();
     teamMenbers();
-    startHtml();
+    
 }
 let employeeArray=[]
 const questions =[
@@ -151,12 +152,12 @@ function startHtml(){
         }
     });
                 }
-   function generateManagerHtml() {
-       const name = Manager.getName();
-       const role = Manager.getRole();
-       const id = Manager.getId();
-       const email = Manager.getEmail();
-       const officeNumber = Manager.getOfficeNumber();
+   function generateManagerHtml(manager) {
+       const name = manager.getName();
+       const role = manager.getRole();
+       const id = manager.getId();
+       const email = manager.getEmail();
+       const officeNumber = manager.getOfficeNumber();
        const managerHtml = `<div class="card employee-card">
        <div class="card-header">
            <h2 class="card-title">${ name }</h2>
