@@ -65,7 +65,7 @@ const decisionQuestion=[
         type: "list",
         message: "Would you like to add another team member?",
         choices: ["Engineer", "Intern", "Finished"],
-        name: "employee_type",
+        name: "choice",
     }
     
 ]
@@ -84,18 +84,18 @@ function decideNext(){
 inquirer.prompt(decisionQuestion).then((response)=>{
     switch(response.choice){
   case "Engineer":
-      engineerPrompt()
-      generateEngineerHtml(newEngineer)
+      engineerPrompt();
+      
       
      break;
     
   case "Intern":
-      internPrompt()
-      generateInternHtml(newIntern)
+      internPrompt();
+      
       
       break;
   default:
-      finishHtml()
+      finishHtml();
 }
 })
 
@@ -123,6 +123,8 @@ function engineerPrompt(){
         newEngineer =new Engineer(answer.name, answer.id, answer.email, answer.github);
         employeeArray.push(newEngineer);
         console.log(employeeArray)
+        generateEngineerHtml(newEngineer)
+        
         decideNext()
     })
    }
@@ -134,7 +136,9 @@ function engineerPrompt(){
         newIntern =new Intern(answer.name, answer.id, answer.email, answer.school);
         employeeArray.push(newIntern);
         console.log(employeeArray)
+        generateInternHtml(newIntern)
        decideNext()
+
     })
    }
 }
@@ -168,9 +172,6 @@ function startHtml(){
         if (err) {
             console.log(err);
         }
-        else{
-            console.log("succes")
-        }
     });
                 }
    function generateManagerHtml(menber) {
@@ -187,7 +188,7 @@ function startHtml(){
        <div class="card-body">
            <ul class="list-group">
                <li class="list-group-item">ID: ${ id }</li>
-               <li class="list-group-item">Email: <a href="mailto:${ email }>${ email }</a></li>
+               <li class="list-group-item">Email: <a href="mailto:${ email }">${ email }</a></li>
                <li class="list-group-item">Office number: ${ officeNumber }</li>
            </ul>
        </div>
@@ -216,7 +217,7 @@ function generateEngineerHtml(menber) {
         <ul class="list-group">
             <li class="list-group-item">ID: ${ id }</li>
             <li class="list-group-item">Email: <a href="mailto:${ email }">${ email }</a></li>
-            <li class="list-group-item">GitHub: <a href="https://github.com/${ github }" target="_blank" rel="">${ github }</a></li>
+            <li class="list-group-item">GitHub: <a href="https://github.com/ ${ github }" target="_blank" rel="">${ github }</a></li>
         </ul>
     </div>
 </div>
@@ -248,7 +249,7 @@ function generateInternHtml(menber){
     <div class="card-body">
         <ul class="list-group">
             <li class="list-group-item">ID: ${ id }</li>
-            <li class="list-group-item">Email: <a href="mailto:${ email }">{{ email }}</a></li>
+            <li class="list-group-item">Email: <a href="mailto:${ email }">${ email }</a></li>
             <li class="list-group-item">School: ${ school }</li>
         </ul>
     </div>
