@@ -1,3 +1,17 @@
-.team-heading{
-    background-color: aqua;
+#header{
+    background-image:url('image/wood.jpeg');
+    color: #75421e;
+    font-weight: 500;
+    font-size: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 8px 8px -4px gray ;
+}
+.employee-card{
+background-color: #be6728;
+box-shadow: 0px 8px 8px -4px gray ;
+margin-right: 10px;
+margin-left: 10px;
+}
+body{
+    background-color: wheat;
 }

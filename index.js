@@ -100,22 +100,6 @@ inquirer.prompt(decisionQuestion).then((response)=>{
 })
 
 }
-// function makeDecision(){
-// inquirer.prompt(decisionQuestion).then((response)=>{
-// console.log(response.employee_type)
-// if (response.employee_type==="Engineer"){
-// engineerPrompt()
-// }
-// else if(response.employee_type==="Intern"){
-//     internPrompt()
-// }
-// else{
-//     generateManagerHtml()
-//     finishHtml()
-// }
-// })
-
-//      }
 function engineerPrompt(){
     inquirer.prompt(engineerQuestions).then((answer)=> {
         console.log (answer)
@@ -152,14 +136,14 @@ function startHtml(){
         <title>My Team</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
             integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="styles.css">
         <script src="https://kit.fontawesome.com/c502137733.js"></script>
     </head>
     
     <body>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-12 jumbotron mb-3 team-heading">
+                <div class="col-12 jumbotron mb-3 team-heading" id="header">
                     <h1 class="text-center">My Team</h1>
                 </div>
             </div>
@@ -283,8 +267,4 @@ function generateInternHtml(menber){
     });
   
 }
-   
-               
-
-
 init()
