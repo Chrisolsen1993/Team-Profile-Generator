@@ -6,25 +6,24 @@ const fs = require("fs");
 function init(){
 console.log("let's build your Team profile by starting with your team manager")
   startHtml();
-    teamMenbers();
-    
+    teamMembers(); 
 }
 let employeeArray=[]
 const questions =[
 
 {
     type: "input",
-    message: "What is the Team Menber's name?",
+    message: "What is the Team Member's name?",
     name: "name",
     },
     {
     type: "number",
-    message: "The is the Team Menber's employee ID?",
+    message: "The is the Team Member's employee ID?",
     name: "id",
     },
     {
     type: "input",
-    message: "What is the Team Menber's email address?",
+    message: "What is the Team Member's email address?",
     name: "email",
     }
     
@@ -70,7 +69,7 @@ const decisionQuestion=[
     
 ]
 
-function teamMenbers(){
+function teamMembers(){
 inquirer.prompt(managerQuestion).then((answer)=> {
     console.log (answer)
     let newManager;
@@ -85,14 +84,9 @@ inquirer.prompt(decisionQuestion).then((response)=>{
     switch(response.choice){
   case "Engineer":
       engineerPrompt();
-      
-      
      break;
-    
   case "Intern":
       internPrompt();
-      
-      
       break;
   default:
       finishHtml();
@@ -215,7 +209,6 @@ function generateEngineerHtml(menber) {
         };
        })
 
-
 }
 function generateInternHtml(menber){
     const name = menber.getName();
@@ -249,9 +242,6 @@ function generateInternHtml(menber){
    })
 
 }
-
-
-
    function finishHtml(){
     const html1 = 
             ` </div>

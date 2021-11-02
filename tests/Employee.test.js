@@ -1,8 +1,8 @@
 const Employee = require("../lib/Employee");
 describe("Employee", () => {
     it("should create an object a", () => {
-        const a = new Employee();
-        expect(typeof(a)).toBe("object");
+        const e = new Employee();
+        expect(typeof(e)).toBe("object");
     });
     it("should return the employee name:'Olsen' ", () => {
         const newName = "Olsen";
@@ -38,7 +38,7 @@ describe("Employee", () => {
 
     describe("getEmail", () => {
         it("should get email via getEmail()", () => {
-            const enployeeEmail = "chris@gmail.com";
+            const employeeEmail = "chris@gmail.com";
             const e = new Employee("Chris", 15, employeeEmail);
             expect(e.getEmail()).toBe(employeeEmail);
         });
