@@ -28,5 +28,5 @@ Team-Profile-Generator is an application that generate a team profile based on t
 * [Repository](https://github.com/Chrisolsen1993/Team-Profile-Generator)
 
 ## Collaboration
-David Dyer
-Matthew Flanagan
+# David Dyer
+# Matthew Flanagan
